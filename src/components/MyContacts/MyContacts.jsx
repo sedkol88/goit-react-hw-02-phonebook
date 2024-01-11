@@ -87,7 +87,7 @@ class MyContacts extends Component {
   }
 
   render() {
-    const { filter } = this.state;
+    // const { filter } = this.state;
     const contacts = this.getFilteredContacts();
     const { addContact, deleteContact, changeFilter } = this;
 
