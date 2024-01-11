@@ -13,18 +13,24 @@ class MyContacts extends Component {
       {
         id: nanoid(),
         name: 'Julia',
+        number: '11-22-33',
+      },
+      {
+        id: nanoid(),
+        name: 'Vasil',
+        number: '44-55-66',
       },
     ],
     filter: '',
   };
 
-  isDublicate({ name }) {
+  isDublicate({ name, number }) {
     const { contacts } = this.state;
     const normalizedName = name.toLowerCase();
 
     const dublicate = contacts.find(item => {
       const normalizedCurrentName = item.name.toLowerCase();
-      return normalizedCurrentName === normalizedName;
+      return normalizedCurrentName === normalizedName || item.number === number;
     });
 
     return Boolean(dublicate);
@@ -32,7 +38,9 @@ class MyContacts extends Component {
 
   addContact = data => {
     if (this.isDublicate(data)) {
-      return alert(`Contact with ${data.name} is already in the list`);
+      return alert(
+        `Contact with ${data.name} and ${data.number} is already in the list`
+      );
     }
 
     this.setState(({ contacts }) => {
